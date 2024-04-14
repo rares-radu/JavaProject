@@ -6,10 +6,10 @@ public class Weather
     private final String cloudiness;
     private final double temperature;
     private final double feelsLike;
-    private final int    humidity;
+    private final short  humidity;
     private final double windSpeed;
 
-    public Weather( String name, String cloudiness, double temperature, double feelsLike, int humidity, double windSpeed )
+    public Weather( String name, String cloudiness, double temperature, double feelsLike, short humidity, double windSpeed )
     {
         this.name        = name;
         this.cloudiness  = cloudiness;
@@ -17,6 +17,11 @@ public class Weather
         this.feelsLike   = feelsLike;
         this.humidity    = humidity;
         this.windSpeed   = windSpeed;
+    }
+
+    public static double kelvinToCelsius( double kelvin )
+    {
+        return kelvin - 273.15f;
     }
 
     public String getName()
@@ -39,7 +44,7 @@ public class Weather
         return feelsLike;
     }
 
-    public int getHumidity()
+    public short getHumidity()
     {
         return humidity;
     }
@@ -47,10 +52,5 @@ public class Weather
     public double getWindSpeed()
     {
         return windSpeed;
-    }
-
-    public static double kelvinToCelsius( double kelvin )
-    {
-        return kelvin - 273.15f;
     }
 }

@@ -83,7 +83,7 @@ public class WeatherRetriever
                 String cloudiness  = jsonResponse.getJSONArray( "weather" ).getJSONObject( 0 ).getString( "main" );
                 double temperature = jsonResponse.getJSONObject( "main" ).getDouble( "temp" );
                 double feelsLike   = jsonResponse.getJSONObject( "main" ).getDouble( "feels_like" );
-                int    humidity    = jsonResponse.getJSONObject( "main" ).getInt( "humidity" );
+                short  humidity    = ( short )jsonResponse.getJSONObject( "main" ).getInt( "humidity" );
                 double windSpeed   = jsonResponse.getJSONObject( "wind" ).getDouble( "speed" );
 
                 return new Weather( cityName, cloudiness, Weather.kelvinToCelsius( temperature ),
