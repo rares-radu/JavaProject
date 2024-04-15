@@ -1,23 +1,25 @@
 package com.example.myapplication;
 
+import java.util.HashMap;
+
 public class Municipality
 {
-    private final short year;
-    private final int   population;
+    private final String                                            name;
+    private final HashMap< Short /*year*/, Integer /*population*/ > populationData;
 
-    public Municipality( short year, int population )
+    public Municipality( String name, HashMap< Short, Integer > populationData )
     {
-        this.year = year;
-        this.population = population;
+        this.name           = name;
+        this.populationData = populationData;
     }
 
-    public short getYear()
+    public String getName()
     {
-        return year;
+        return name;
     }
 
-    public int getPopulation()
+    public HashMap< Short, Integer > getPopulationData()
     {
-        return population;
+        return populationData;
     }
 }
