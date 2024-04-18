@@ -1,7 +1,8 @@
 package com.example.myapplication;
 
-public interface RetrieverListener
+public interface RetrieverListener< T >
 {
-    void onSuccess(Weather weather);
-    void onFailure(Exception e);
+    void onSuccess( T value );
+
+    void onFailure( Exception e );
 }

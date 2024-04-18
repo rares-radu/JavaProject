@@ -21,7 +21,7 @@ public class WeatherRetriever
     /*
      * How to use:
      *
-     * WeatherRetriever.getWeather( "Lahti", new RetrieverListener()
+     * WeatherRetriever.getWeather( "Lahti", new RetrieverListener< Weather >()
      * {
      *     @Override
      *     public void onSuccess( Weather weather )
@@ -35,7 +35,7 @@ public class WeatherRetriever
      *     }
      * } );
      */
-    public static void getWeather( @NotNull String cityName, @NotNull RetrieverListener listener )
+    public static void getWeather( @NotNull String cityName, @NotNull RetrieverListener< Weather > listener )
     {
         try
         {
@@ -52,20 +52,20 @@ public class WeatherRetriever
     // Why all of this? This is needed because Android does not allow network operations on the main thread.
     private static class RetrieveJson extends AsyncTask< URL, Void, Weather >
     {
-        private final RetrieverListener listener;
+        private final RetrieverListener< Weather > listener;
 
-        public RetrieveJson( RetrieverListener listener )
+        public RetrieveJson( RetrieverListener< Weather > listener )
         {
             this.listener = listener;
         }
 
         // Only one URL supported. Index 0 will be used. If you pass more, they'll simply be ignored.
         @Override
-        protected Weather doInBackground( URL... urls )
+        protected Weather doInBackground( URL... params )
         {
             try
             {
-                HttpsURLConnection connection = ( HttpsURLConnection )urls[ 0 ].openConnection();
+                HttpsURLConnection connection = ( HttpsURLConnection )params[ 0 ].openConnection();
                 connection.setRequestMethod( "GET" );
 
                 BufferedReader in       = new BufferedReader( new InputStreamReader( connection.getInputStream() ) );
