@@ -5,43 +5,43 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".QuizMenuActivity"
+    tools:context=".QuizResultActivity"
     android:background="@color/azure"
     >
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/quiz_result_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Quiz Menu"
-        android:layout_marginTop="30dp"
-        android:textSize="20dp"
+        android:layout_marginTop="100dp"
         android:textColor="@color/gray"
+        android:textSize="20dp"
+        android:text="Your score is"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/quiz_menu_start_button"
+        android:id="@+id/quiz_result_go_back_button"
+        style="@style/Widget.Material3.Button.ElevatedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start new quiz"
-        android:paddingHorizontal="60dp"
-        android:layout_marginBottom="70dp"
+        android:text="Go back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/quiz_result_try_again_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quiz_result_text_view" />
+
+    <Button
+        android:id="@+id/quiz_result_try_again_button"
         style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Try again"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/quiz_result_go_back_button"
+        app:layout_constraintTop_toBottomOf="@+id/quiz_result_text_view" />
 
-    <TextView
-        android:id="@+id/quiz_menu_record_text_view"
-        android:textColor="@color/gray"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:layout_marginStart="40dp"
-        android:text="Current record - "
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

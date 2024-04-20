@@ -15,21 +15,21 @@ public class MainActivity extends AppCompatActivity
         setContentView( R.layout.activity_main );
 
         Button searchButton = findViewById( R.id.main_button_search );
-        searchButton.setOnClickListener( this::switchToSearch );
 
         Button quizButton = findViewById( R.id.main_button_quiz );
-        quizButton.setOnClickListener( this::switchToQuiz );
-    }
-
-    private void switchToSearch( View view )
-    {
-        Intent intent = new Intent( this, SearchActivity.class );
-        startActivity( intent );
-    }
-
-    private void switchToQuiz( View view )
-    {
-        Intent intent = new Intent( this, QuizActivity.class );
-        startActivity( intent );
+        quizButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent( MainActivity.this, QuizMenuActivity.class );
+                startActivity( intent );
+            }
+        });
+        /*searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent( MainActivity.this, SearchActivity.class );
+                startActivity( intent );
+            }
+        });*/
     }
 }

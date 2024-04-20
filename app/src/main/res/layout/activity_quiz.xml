@@ -11,7 +11,7 @@
     >
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/quiz_question_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Question"
@@ -34,7 +34,7 @@
         android:paddingEnd="160dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/quiz_question_text_view">
 
         <RadioButton
             android:id="@+id/quiz_option1_radio_button"
@@ -70,7 +70,15 @@
         android:text="Answer"
         />
 
-
+    <TextView
+        android:id="@+id/quiz_question_number_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1/10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="20dp"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
