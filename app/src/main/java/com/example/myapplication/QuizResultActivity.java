@@ -12,39 +12,46 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class QuizResultActivity extends AppCompatActivity {
+public class QuizResultActivity extends AppCompatActivity
+{
 
-    TextView result_text;
-    Button again_button, back_button;
+    TextView resultText;
+    Button   againButton, backButton;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz_result);
+    protected void onCreate( Bundle savedInstanceState )
+    {
+        super.onCreate( savedInstanceState );
+        setContentView( R.layout.activity_quiz_result );
 
-        result_text = findViewById(R.id.quiz_result_text_view);
-        again_button = findViewById(R.id.quiz_result_try_again_button);
-        back_button = findViewById(R.id.quiz_result_go_back_button);
-        if (QuizActivity.correct_counter > QuizMenuActivity.record){
-            QuizMenuActivity.record = QuizActivity.correct_counter;
+        resultText  = findViewById( R.id.quiz_result_text_view );
+        againButton = findViewById( R.id.quiz_result_try_again_button );
+        backButton  = findViewById( R.id.quiz_result_go_back_button );
+        if ( QuizActivity.correctCounter > QuizMenuActivity.record )
+        {
+            QuizMenuActivity.record = QuizActivity.correctCounter;
         }
 
-        String result = "Your score is " + QuizActivity.correct_counter + "!";
-        result_text.setText(result);
-        again_button.setOnClickListener(new View.OnClickListener() {
+        String result = "Your score is " + QuizActivity.correctCounter + "!";
+        resultText.setText( result );
+        againButton.setOnClickListener( new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(QuizResultActivity.this, QuizActivity.class);
-                startActivity(intent);
+            public void onClick( View view )
+            {
+                Intent intent = new Intent( QuizResultActivity.this, QuizActivity.class );
+                startActivity( intent );
             }
-        });
-        back_button.setOnClickListener(new View.OnClickListener() {
+        } );
+        backButton.setOnClickListener( new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(QuizResultActivity.this, MainActivity.class);
-                startActivity(intent);
+            public void onClick( View view )
+            {
+                Intent intent = new Intent( QuizResultActivity.this, MainActivity.class );
+                startActivity( intent );
             }
-        });
+        } );
 
     }
 }

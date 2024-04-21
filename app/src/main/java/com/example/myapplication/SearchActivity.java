@@ -15,40 +15,46 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity
+{
 
-    Button search_button;
+    Button                searchButton;
     FragmentContainerView fragmentContainerView;
-    SwitchCompat switchCompat;
+    SwitchCompat          switchCompat;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
-        search_button = findViewById(R.id.searchButton);
-        fragmentContainerView = findViewById(R.id.fragment_container_view);
-        switchCompat = findViewById(R.id.search_switch);
+    protected void onCreate( Bundle savedInstanceState )
+    {
+        super.onCreate( savedInstanceState );
+        setContentView( R.layout.activity_search );
+        searchButton          = findViewById( R.id.searchButton );
+        fragmentContainerView = findViewById( R.id.fragment_container_view );
+        switchCompat          = findViewById( R.id.search_switch );
         FragmentManager fragmentManager = getSupportFragmentManager();
-        switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        switchCompat.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener()
+        {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if(isChecked){
+            public void onCheckedChanged( CompoundButton compoundButton, boolean isChecked )
+            {
+                if ( isChecked )
+                {
                     fragmentManager.beginTransaction()
-                            .replace(R.id.fragment_container_view, MunicipalityBriefInfoFragment.class, null)
-                            .setReorderingAllowed(true)
-                            .addToBackStack("")
+                            .replace( R.id.fragment_container_view, MunicipalityBriefInfoFragment.class, null )
+                            .setReorderingAllowed( true )
+                            .addToBackStack( "" )
                             .commit();
-                    switchCompat.setText("Brief");
+                    switchCompat.setText( "Brief" );
                 }
-                else {
+                else
+                {
                     fragmentManager.beginTransaction()
-                            .replace(R.id.fragment_container_view, MunicipalityInfoFragment.class, null)
-                            .setReorderingAllowed(true)
-                            .addToBackStack("")
+                            .replace( R.id.fragment_container_view, MunicipalityInfoFragment.class, null )
+                            .setReorderingAllowed( true )
+                            .addToBackStack( "" )
                             .commit();
-                    switchCompat.setText("Detailed");
+                    switchCompat.setText( "Detailed" );
                 }
             }
-        });
+        } );
     }
 }
