@@ -1,9 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MunicipalityBriefInfoFragment">
+    android:layout_height="wrap_content"
+    tools:context=".MunicipalityBriefInfoFragment"
+    android:paddingVertical="50dp"
+    >
+
+
+    <TextView
+        android:id="@+id/brief_city_name_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="City name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="40dp"
+        />
+
+    <TextView
+        android:id="@+id/brief_weather_state_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Weather - "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/brief_city_name_text_view"
+        android:layout_margin="40dp"
+        />
+
+    <ImageView
+        android:id="@+id/brief_weather_state_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="@+id/brief_weather_state_text_view"
+        app:layout_constraintStart_toEndOf="@+id/brief_weather_state_text_view"
+        app:layout_constraintTop_toTopOf="@+id/brief_weather_state_text_view" />
+
+    <TextView
+        android:id="@+id/brief_temperature_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Temperature"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/brief_weather_state_text_view"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="40dp"
+        />
+
+    <TextView
+        android:id="@+id/brief_population_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Population - "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/brief_temperature_text_view"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="50dp"
+        />
+
+    <ImageView
+        android:id="@+id/brief_person_first_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/person_empty"
+        app:layout_constraintBottom_toBottomOf="@+id/brief_population_text_view"
+        app:layout_constraintStart_toEndOf="@+id/brief_population_text_view"
+        app:layout_constraintTop_toTopOf="@+id/brief_population_text_view" />
+
+    <ImageView
+        android:id="@+id/brief_person_second_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/person_empty"
+        app:layout_constraintBottom_toBottomOf="@+id/brief_person_first_image"
+        app:layout_constraintStart_toEndOf="@+id/brief_person_first_image"
+        app:layout_constraintTop_toTopOf="@+id/brief_person_first_image" />
+
+    <ImageView
+        android:id="@+id/brief_person_third_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/person_empty"
+        app:layout_constraintBottom_toBottomOf="@+id/brief_person_second_image"
+        app:layout_constraintStart_toEndOf="@+id/brief_person_second_image"
+        app:layout_constraintTop_toTopOf="@+id/brief_person_second_image" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
