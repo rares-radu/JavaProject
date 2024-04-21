@@ -26,7 +26,7 @@ public class WeatherRetriever
      *     @Override
      *     public void onSuccess( Weather weather )
      *     {
-     *         Log.i( "[INFO]", String.format( "Weather [%s %s %f]", weather.getName(), weather.getCloudiness(), weather.getTemperature() ) );
+     *         Log.i( "[INFO]", String.format( "Weather [%s %s %f]", weather.getName(), weather.getweather(), weather.getTemperature() ) );
      *     }
      *
      *     @Override
@@ -80,13 +80,13 @@ public class WeatherRetriever
                 JSONObject jsonResponse = new JSONObject( response.toString() );
 
                 String cityName    = jsonResponse.getString( "name" );
-                String cloudiness  = jsonResponse.getJSONArray( "weather" ).getJSONObject( 0 ).getString( "main" );
+                String weather  = jsonResponse.getJSONArray( "weather" ).getJSONObject( 0 ).getString( "main" );
                 double temperature = jsonResponse.getJSONObject( "main" ).getDouble( "temp" );
                 double feelsLike   = jsonResponse.getJSONObject( "main" ).getDouble( "feels_like" );
                 short  humidity    = ( short )jsonResponse.getJSONObject( "main" ).getInt( "humidity" );
                 double windSpeed   = jsonResponse.getJSONObject( "wind" ).getDouble( "speed" );
 
-                return new Weather( cityName, cloudiness, Weather.kelvinToCelsius( temperature ),
+                return new Weather( cityName, weather, Weather.kelvinToCelsius( temperature ),
                         Weather.kelvinToCelsius( feelsLike ), humidity, windSpeed );
             }
             catch ( IOException | JSONException e )

@@ -24,12 +24,12 @@ public class MainActivity extends AppCompatActivity
                 startActivity( intent );
             }
         });
-        /*searchButton.setOnClickListener(new View.OnClickListener() {
+        searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent( MainActivity.this, SearchActivity.class );
                 startActivity( intent );
             }
-        });*/
+        });
     }
 }
