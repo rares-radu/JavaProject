@@ -187,6 +187,12 @@ public class MunicipalityRetriever
 
                 URL    populationApiUrl = new URL( POPULATION_API_URL );
                 String municipalityCode = getMunicipalityCode( populationApiUrl, municipalityName );
+
+                if ( municipalityCode == null )
+                {
+                    return null;
+                }
+
                 String populationQuery  = POPULATION_QUERY.replaceFirst( "MUNICIPALITY_CODE", municipalityCode );
 
                 JSONObject populationResponse = makeApiRequest( populationApiUrl, populationQuery );
