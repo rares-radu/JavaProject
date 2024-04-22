@@ -33,10 +33,11 @@
     <androidx.fragment.app.FragmentContainerView
         android:visibility="invisible"
         android:background="@drawable/search_view_background"
-        android:layout_margin="40dp"
         android:id="@+id/fragment_container_view"
         android:name="com.example.myapplication.MunicipalityInfoFragment"
         android:layout_width="0dp"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginBottom="20dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -90,7 +90,7 @@ public class QuizActivity extends AppCompatActivity
                 correct = random.nextInt( 3 );
                 int         correct_option     = options.get( correct );
                 RadioButton correct_button     = findViewById( correct_option );
-                String      correct_population = formatNumberWithSpaces( municipality.getPopulationData().get( ( short )2020 ) );
+                String      correct_population = formatNumberWithSpaces( municipality.getPopulationData().get( ( short )2022 ) );
                 correct_button.setText( correct_population );
                 for ( int option_id : options )
                 {

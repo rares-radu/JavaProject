@@ -48,7 +48,7 @@ public class MunicipalityBriefInfoFragment extends Fragment
         temperature.setText( "Temperature is "+ roundToOneDecimalPlace( weather.getTemperature() ) + "°C." );
         String imageUrl = "https://openweathermap.org/img/wn/" + weather.getWeatherIcon() + ".png";
         Glide.with( this ).load( imageUrl ).into( weatherState );
-        int population = municipality.getPopulationData().get( (short) 2020);
+        int population = municipality.getPopulationData().get( (short) 2022);
         if(population >= 500000){
             populationThird.setImageResource( R.drawable.person_filled );
         }

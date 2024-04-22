@@ -16,6 +16,7 @@
         android:text="City name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginEnd="80dp"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="40dp"
         />
@@ -28,15 +29,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/brief_city_name_text_view"
         android:layout_margin="40dp"
+        android:visibility="invisible"
         />
 
     <ImageView
         android:id="@+id/brief_weather_state_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:layout_constraintBottom_toBottomOf="@+id/brief_weather_state_text_view"
-        app:layout_constraintStart_toEndOf="@+id/brief_weather_state_text_view"
-        app:layout_constraintTop_toTopOf="@+id/brief_weather_state_text_view" />
+        android:layout_width="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toBottomOf="@+id/brief_city_name_text_view"
+        app:layout_constraintStart_toEndOf="@+id/brief_city_name_text_view"
+        app:layout_constraintTop_toTopOf="@+id/brief_city_name_text_view" />
 
     <TextView
         android:id="@+id/brief_temperature_text_view"

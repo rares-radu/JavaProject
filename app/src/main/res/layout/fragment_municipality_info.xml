@@ -100,5 +100,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/population_text_view" />
 
+    <TextView
+        android:id="@+id/employment_text_view"
+        android:layout_width="200dp"
+        android:textAlignment="center"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:text="Employment data"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/feels_like_text_view" />
+
+    <TextView
+        android:id="@+id/workplace_text_view"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Workplace data"
+        app:layout_constraintEnd_toEndOf="@+id/employment_text_view"
+        app:layout_constraintTop_toTopOf="@+id/humidity_text_view" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
