@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,6 +25,17 @@ public class QuizActivity extends AppCompatActivity
 {
 
     static        int                 correctCounter;
+    static String formatNumberWithSpaces(int x) {
+        DecimalFormat formatter = new DecimalFormat("#,###");
+        formatter.setGroupingSize(3);
+        formatter.setGroupingUsed(true);
+        formatter.setDecimalSeparatorAlwaysShown(false);
+
+        String formattedNumber = formatter.format(x);
+        formattedNumber = formattedNumber.replace(",", " ");
+
+        return formattedNumber;
+    }
     private final ArrayList< String > cities = new ArrayList< String >()
     {{
         add( "Helsinki" );
@@ -78,14 +90,14 @@ public class QuizActivity extends AppCompatActivity
                 correct = random.nextInt( 3 );
                 int         correct_option     = options.get( correct );
                 RadioButton correct_button     = findViewById( correct_option );
-                String      correct_population = Integer.toString( municipality.getPopulationData().get( ( short )2020 ) );
+                String      correct_population = formatNumberWithSpaces( municipality.getPopulationData().get( ( short )2020 ) );
                 correct_button.setText( correct_population );
                 for ( int option_id : options )
                 {
                     if ( option_id != correct_option )
                     {
                         RadioButton current_option = findViewById( option_id );
-                        String      population     = Integer.toString( random.nextInt( 1255283 ) + 50610 );
+                        String      population     = formatNumberWithSpaces( random.nextInt( 1255283 ) + 50610 );
                         current_option.setText( population );
                     }
                 }

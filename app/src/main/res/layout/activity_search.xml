@@ -9,17 +9,16 @@
     android:background="@color/azure"
     >
 
-    <SearchView
-        android:id="@+id/searchView"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/search_view_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+    <EditText
+        android:layout_marginTop="20dp"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/search_edit_text"
+        android:background="@drawable/search_view_background"
+    />
     <Button
         android:id="@+id/searchButton"
         android:layout_width="wrap_content"
@@ -28,10 +27,10 @@
         android:text="Search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+        app:layout_constraintTop_toBottomOf="@+id/search_edit_text" />
 
     <androidx.fragment.app.FragmentContainerView
-        android:visibility="visible"
+        android:visibility="invisible"
         android:background="@drawable/search_view_background"
         android:layout_margin="40dp"
         android:id="@+id/fragment_container_view"

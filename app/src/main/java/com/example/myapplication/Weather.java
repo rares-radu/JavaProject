@@ -12,7 +12,7 @@ public class Weather
     public Weather( String name, String weather, double temperature, double feelsLike, short humidity, double windSpeed )
     {
         this.name        = name;
-        this.weather  = weather;
+        this.weather     = weather;
         this.temperature = temperature;
         this.feelsLike   = feelsLike;
         this.humidity    = humidity;

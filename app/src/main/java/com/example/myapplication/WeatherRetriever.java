@@ -2,11 +2,13 @@ package com.example.myapplication;
 
 import android.os.AsyncTask;
 import android.util.Log;
+
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import javax.net.ssl.HttpsURLConnection;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -80,7 +82,7 @@ public class WeatherRetriever
                 JSONObject jsonResponse = new JSONObject( response.toString() );
 
                 String cityName    = jsonResponse.getString( "name" );
-                String weather  = jsonResponse.getJSONArray( "weather" ).getJSONObject( 0 ).getString( "main" );
+                String weather     = jsonResponse.getJSONArray( "weather" ).getJSONObject( 0 ).getString( "main" );
                 double temperature = jsonResponse.getJSONObject( "main" ).getDouble( "temp" );
                 double feelsLike   = jsonResponse.getJSONObject( "main" ).getDouble( "feels_like" );
                 short  humidity    = ( short )jsonResponse.getJSONObject( "main" ).getInt( "humidity" );
