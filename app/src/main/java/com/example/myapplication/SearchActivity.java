@@ -24,7 +24,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class SearchActivity extends AppCompatActivity implements MunicipalityInfoFragment.OnButtonClickListener
+public class SearchActivity extends AppCompatActivity implements MunicipalityInfoFragment.OnButtonClickListener, MunicipalityBriefInfoFragment.OnButtonClickListenerBrief
 {
 
 
@@ -32,6 +32,8 @@ public class SearchActivity extends AppCompatActivity implements MunicipalityInf
     FragmentContainerView fragmentContainerView;
     SwitchCompat          switchCompat;
     EditText              searchEditText;
+    Municipality currentValueMunicipality;
+    Weather currentValueWeather;
 
     @Override
     public void onButtonClick( Municipality municipality, Weather weather )
@@ -40,6 +42,12 @@ public class SearchActivity extends AppCompatActivity implements MunicipalityInf
         if ( fragment != null && fragment.isAdded() )
         {
             fragment.updateTextView( municipality, weather );
+        }
+    }
+    public void onButtonClickBrief(Municipality municipality, Weather weather) {
+        MunicipalityBriefInfoFragment fragment = (MunicipalityBriefInfoFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container_view);
+        if (fragment != null && fragment.isAdded()) {
+            fragment.updateTextViewBrief(municipality, weather);
         }
     }
 
@@ -52,50 +60,60 @@ public class SearchActivity extends AppCompatActivity implements MunicipalityInf
         searchButton          = findViewById( R.id.searchButton );
         fragmentContainerView = findViewById( R.id.fragment_container_view );
         switchCompat          = findViewById( R.id.search_switch );
-        FragmentManager fragmentManager = getSupportFragmentManager();
+
 
         searchButton.setOnClickListener( new View.OnClickListener()
         {
             @Override
-            public void onClick( View view )
-            {
+            public void onClick(View view) {
                 String prompt = searchEditText.getText().toString();
-                MunicipalityRetriever.getMunicipality( prompt, new RetrieverListener< Municipality >()
-                {
+                MunicipalityRetriever.getMunicipality(prompt, new RetrieverListener<Municipality>() {
                     @Override
-                    public void onSuccess( Municipality valueMunicipality )
-                    {
-                        WeatherRetriever.getWeather( prompt, new RetrieverListener< Weather >()
-                        {
+                    public void onSuccess(Municipality valueMunicipality) {
+                        WeatherRetriever.getWeather(prompt, new RetrieverListener<Weather>() {
                             @Override
-                            public void onSuccess( Weather valueWeather )
-                            {
-                                if((valueWeather == null) || (valueMunicipality == null)){
-                                    fragmentContainerView.setVisibility( View.INVISIBLE );
-                                    Toast.makeText( SearchActivity.this, "Try another municipality name", Toast.LENGTH_SHORT ).show();
+                            public void onSuccess(Weather valueWeather) {
+                                if (switchCompat.isChecked()) {
+                                    // Second fragment is visible
+                                    if((valueWeather == null) || (valueMunicipality == null)){
+                                        fragmentContainerView.setVisibility( View.INVISIBLE );
+                                        Toast.makeText( SearchActivity.this, "Try another municipality name", Toast.LENGTH_SHORT ).show();
+                                    }
+                                    else{
+                                        currentValueMunicipality = valueMunicipality;
+                                        currentValueWeather = valueWeather;
+                                        onButtonClickBrief(valueMunicipality, valueWeather);
+                                        fragmentContainerView.setVisibility(View.VISIBLE);
+                                    }
+                                } else {
+                                    // First fragment is visible
+                                    if((valueWeather == null) || (valueMunicipality == null)){
+                                        fragmentContainerView.setVisibility( View.INVISIBLE );
+                                        Toast.makeText( SearchActivity.this, "Try another municipality name", Toast.LENGTH_SHORT ).show();
+                                    }
+                                    else{
+                                        currentValueMunicipality = valueMunicipality;
+                                        currentValueWeather = valueWeather;
+                                        onButtonClick(valueMunicipality, valueWeather);
+                                        fragmentContainerView.setVisibility(View.VISIBLE);
+                                    }
                                 }
-                                else{
-                                    onButtonClick( valueMunicipality, valueWeather );
-                                    fragmentContainerView.setVisibility( View.VISIBLE );
-                                }
+                            }
 
-                            }
                             @Override
-                            public void onFailure( Exception e )
-                            {
-                                fragmentContainerView.setVisibility( View.INVISIBLE );
-                                Toast.makeText( SearchActivity.this, "Try another municipality name", Toast.LENGTH_SHORT ).show();
+                            public void onFailure(Exception e) {
+                                fragmentContainerView.setVisibility(View.INVISIBLE);
+                                Toast.makeText(SearchActivity.this, "Try another municipality name", Toast.LENGTH_SHORT).show();
                             }
-                        } );
+                        });
                     }
 
                     @Override
-                    public void onFailure( Exception e )
-                    {
-                        fragmentContainerView.setVisibility( View.INVISIBLE );
-                        Toast.makeText( SearchActivity.this, "Try another municipality name", Toast.LENGTH_SHORT ).show();
+                    public void onFailure(Exception e) {
+                        fragmentContainerView.setVisibility(View.INVISIBLE);
+                        Toast.makeText(SearchActivity.this, "Try another municipality name", Toast.LENGTH_SHORT).show();
                     }
-                } );
+                });
             }
         } );
         switchCompat.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener()
@@ -103,23 +121,23 @@ public class SearchActivity extends AppCompatActivity implements MunicipalityInf
             @Override
             public void onCheckedChanged( CompoundButton compoundButton, boolean isChecked )
             {
-                if ( isChecked )
-                {
-                    fragmentManager.beginTransaction()
-                            .replace( R.id.fragment_container_view, MunicipalityBriefInfoFragment.class, null )
-                            .setReorderingAllowed( true )
-                            .addToBackStack( "" )
+                if (isChecked) {
+                    MunicipalityBriefInfoFragment fragment = new MunicipalityBriefInfoFragment();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container_view, fragment)
+                            .setReorderingAllowed(true)
+                            .addToBackStack(null)
                             .commit();
-                    switchCompat.setText( "Brief" );
-                }
-                else
-                {
-                    fragmentManager.beginTransaction()
-                            .replace( R.id.fragment_container_view, MunicipalityInfoFragment.class, null )
-                            .setReorderingAllowed( true )
-                            .addToBackStack( "" )
+                    switchCompat.setText("Brief");
+
+                } else {
+                    MunicipalityInfoFragment fragment = new MunicipalityInfoFragment();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container_view, fragment)
+                            .setReorderingAllowed(true)
+                            .addToBackStack(null)
                             .commit();
-                    switchCompat.setText( "Detailed" );
+                    switchCompat.setText("Detailed");
                 }
             }
         } );

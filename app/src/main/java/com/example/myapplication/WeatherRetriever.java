@@ -83,12 +83,13 @@ public class WeatherRetriever
 
                 String cityName    = jsonResponse.getString( "name" );
                 String weather     = jsonResponse.getJSONArray( "weather" ).getJSONObject( 0 ).getString( "main" );
+                String weatherIcon = jsonResponse.getJSONArray( "weather" ).getJSONObject( 0 ).getString( "icon" );
                 double temperature = jsonResponse.getJSONObject( "main" ).getDouble( "temp" );
                 double feelsLike   = jsonResponse.getJSONObject( "main" ).getDouble( "feels_like" );
                 short  humidity    = ( short )jsonResponse.getJSONObject( "main" ).getInt( "humidity" );
                 double windSpeed   = jsonResponse.getJSONObject( "wind" ).getDouble( "speed" );
 
-                return new Weather( cityName, weather, Weather.kelvinToCelsius( temperature ),
+                return new Weather( cityName, weather, weatherIcon, Weather.kelvinToCelsius( temperature ),
                         Weather.kelvinToCelsius( feelsLike ), humidity, windSpeed );
             }
             catch ( IOException | JSONException e )

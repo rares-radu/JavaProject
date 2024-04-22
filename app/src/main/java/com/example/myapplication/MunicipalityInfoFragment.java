@@ -18,7 +18,7 @@ public class MunicipalityInfoFragment extends Fragment
 
 
 {
-    TextView municipalityName, temperature, feelsLike, humidity, windSpeed, weatherState, population;
+    private TextView municipalityName, temperature, feelsLike, humidity, windSpeed, weatherState, population;
     private OnButtonClickListener mListener;
 
     public String roundToOneDecimalPlace( double value )
@@ -49,7 +49,7 @@ public class MunicipalityInfoFragment extends Fragment
         humidity.setText( "Humidity is " + Short.toString( weather.getHumidity() ) + "%.");
         windSpeed.setText( "Wind speed is " + roundToOneDecimalPlace( weather.getWindSpeed() ) + " m/s.");
         weatherState.setText( "Weather is " + weather.getweather() + ".");
-        population.setText( "The population is " + QuizActivity.formatNumberWithSpaces( municipality.getPopulationData().get( ( short )2022 ) ) + " people." );
+        population.setText( "The population is " + QuizActivity.formatNumberWithSpaces( municipality.getPopulationData().get( ( short )2020 ) ) + " people." );
     }
 
     @Override
