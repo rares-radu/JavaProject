@@ -31,4 +31,9 @@ public class Municipality
     {
         return employmentData;
     }
+
+    public HashMap< Short, Float > getWorkplaceData()
+    {
+        return workplaceData;
+    }
 }
