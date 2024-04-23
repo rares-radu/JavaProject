@@ -64,14 +64,14 @@ public class QuizActivity extends AppCompatActivity
             startActivity( intent );
             return;
         }
-        String city_name = cities.get( order.get( current ) );
+        String cityName = cities.get( order.get( current ) );
 
-        MunicipalityRetriever.getMunicipality( city_name, new RetrieverListener< Municipality >()
+        MunicipalityRetriever.getMunicipality( cityName, new RetrieverListener< Municipality >()
         {
             @Override
             public void onSuccess( Municipality municipality )
             {
-                String newQuestion = "What is the population of " + city_name + "?";
+                String newQuestion = "What is the population of " + cityName + "?";
                 Log.i( "Municipality", "Name: " + municipality.getName() );
                 Log.i( "PopulationData", "Data: " + municipality.getPopulationData() );
                 question.setText( newQuestion );
@@ -98,7 +98,7 @@ public class QuizActivity extends AppCompatActivity
             @Override
             public void onFailure( Exception e )
             {
-                Log.i( "API ERROR", "SOMETHING WENT WRONG WITH " + city_name );
+                Log.i( "API ERROR", "SOMETHING WENT WRONG WITH " + cityName );
             }
         } );
     }
