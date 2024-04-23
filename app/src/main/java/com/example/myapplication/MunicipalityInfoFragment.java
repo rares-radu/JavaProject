@@ -4,16 +4,11 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-
+import androidx.fragment.app.Fragment;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -26,8 +21,6 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class MunicipalityInfoFragment extends Fragment
-
-
 {
     private TextView municipalityName, temperature, feelsLike, humidity, windSpeed, weatherState, population, employment, workplace;
     private LineChart             graph;
@@ -49,8 +42,7 @@ public class MunicipalityInfoFragment extends Fragment
         }
         else
         {
-            throw new RuntimeException( context.toString()
-                    + " must implement OnButtonClickListener" );
+            throw new RuntimeException( context + " must implement OnButtonClickListener" );
         }
     }
 
@@ -59,9 +51,9 @@ public class MunicipalityInfoFragment extends Fragment
         municipalityName.setText( municipality.getName() );
         temperature.setText( "Temperature is " + roundToOneDecimalPlace( weather.getTemperature() ) + "°C." );
         feelsLike.setText( "Feels like " + roundToOneDecimalPlace( weather.getFeelsLike() ) + "°C." );
-        humidity.setText( "Humidity is " + Short.toString( weather.getHumidity() ) + "%." );
+        humidity.setText( "Humidity is " + weather.getHumidity() + "%." );
         windSpeed.setText( "Wind speed is " + roundToOneDecimalPlace( weather.getWindSpeed() ) + " m/s." );
-        weatherState.setText( "Weather is " + weather.getweather() + "." );
+        weatherState.setText( "Weather is " + weather.getWeather() + "." );
         population.setText( "The population is " + QuizActivity.formatNumberWithSpaces( municipality.getPopulationData().get( ( short )2022 ) ) + " people." );
         employment.setText( "Employment rate is " + roundToOneDecimalPlace( municipality.getEmploymentData().get( ( short )2022 ) ) + "%." );
         workplace.setText( "Workplace self-sufficiency is " + roundToOneDecimalPlace( municipality.getWorkplaceData().get( ( short )2022 ) ) + "%." );
@@ -70,12 +62,12 @@ public class MunicipalityInfoFragment extends Fragment
 
     private void drawGraph( Municipality municipality )
     {
-
         ArrayList< Entry > values = new ArrayList<>();
         for ( Map.Entry< Short, Integer > set : municipality.getPopulationData().entrySet() )
         {
             values.add( new Entry( set.getKey(), set.getValue() ) );
         }
+
         ValueFormatter xAxisFormatter = new ValueFormatter()
         {
             @Override
@@ -84,7 +76,9 @@ public class MunicipalityInfoFragment extends Fragment
                 return String.valueOf( ( int )value ); // Cast to int to remove decimal part
             }
         };
+
         graph.getXAxis().setValueFormatter( xAxisFormatter );
+
         LineDataSet dataSet = new LineDataSet( values, "Population" );
         dataSet.setAxisDependency( YAxis.AxisDependency.LEFT );
         dataSet.setColor( Color.BLACK );
@@ -118,8 +112,7 @@ public class MunicipalityInfoFragment extends Fragment
     }
 
     @Override
-    public View onCreateView( LayoutInflater inflater, ViewGroup container,
-                              Bundle savedInstanceState )
+    public View onCreateView( LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState )
     {
         View view = inflater.inflate( R.layout.fragment_municipality_info, container, false );
         municipalityName = view.findViewById( R.id.municipality_name_text_view );
@@ -134,7 +127,6 @@ public class MunicipalityInfoFragment extends Fragment
         graph            = view.findViewById( R.id.populationGraph );
         return view;
     }
-
 
     public interface OnButtonClickListener
     {

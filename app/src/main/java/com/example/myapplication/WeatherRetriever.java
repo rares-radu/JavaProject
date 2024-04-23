@@ -2,13 +2,11 @@ package com.example.myapplication;
 
 import android.os.AsyncTask;
 import android.util.Log;
-
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import javax.net.ssl.HttpsURLConnection;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

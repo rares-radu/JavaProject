@@ -4,38 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class QuizActivity extends AppCompatActivity
 {
-
     static        int                 correctCounter;
-    static String formatNumberWithSpaces(int x) {
-        DecimalFormat formatter = new DecimalFormat("#,###");
-        formatter.setGroupingSize(3);
-        formatter.setGroupingUsed(true);
-        formatter.setDecimalSeparatorAlwaysShown(false);
-
-        String formattedNumber = formatter.format(x);
-        formattedNumber = formattedNumber.replace(",", " ");
-
-        return formattedNumber;
-    }
     private final ArrayList< String > cities = new ArrayList< String >()
     {{
         add( "Helsinki" );
@@ -63,6 +42,19 @@ public class QuizActivity extends AppCompatActivity
     private List< Integer > order;
     private int             correct;
 
+    static String formatNumberWithSpaces( int x )
+    {
+        DecimalFormat formatter = new DecimalFormat( "#,###" );
+        formatter.setGroupingSize( 3 );
+        formatter.setGroupingUsed( true );
+        formatter.setDecimalSeparatorAlwaysShown( false );
+
+        String formattedNumber = formatter.format( x );
+        formattedNumber = formattedNumber.replace( ",", " " );
+
+        return formattedNumber;
+    }
+
     private void generateQuestion()
     {
         Log.i( "ALOOO", "EVERYTHING STARTED" );
@@ -79,26 +71,26 @@ public class QuizActivity extends AppCompatActivity
             @Override
             public void onSuccess( Municipality municipality )
             {
-                String new_question = "What is the population of " + city_name + "?";
+                String newQuestion = "What is the population of " + city_name + "?";
                 Log.i( "Municipality", "Name: " + municipality.getName() );
                 Log.i( "PopulationData", "Data: " + municipality.getPopulationData() );
-                question.setText( new_question );
-                String new_question_number = Integer.toString( current + 1 ) + "/10";
-                questionNumber.setText( new_question_number );
+                question.setText( newQuestion );
+                String newQuestionNumber = current + 1 + "/10";
+                questionNumber.setText( newQuestionNumber );
                 List< Integer > options = Arrays.asList( R.id.quiz_option1_radio_button, R.id.quiz_option2_radio_button, R.id.quiz_option3_radio_button );
                 Random          random  = new Random();
                 correct = random.nextInt( 3 );
-                int         correct_option     = options.get( correct );
-                RadioButton correct_button     = findViewById( correct_option );
-                String      correct_population = formatNumberWithSpaces( municipality.getPopulationData().get( ( short )2022 ) );
-                correct_button.setText( correct_population );
-                for ( int option_id : options )
+                int         correctOption     = options.get( correct );
+                RadioButton correctButton     = findViewById( correctOption );
+                String      correctPopulation = formatNumberWithSpaces( municipality.getPopulationData().get( ( short )2022 ) );
+                correctButton.setText( correctPopulation );
+                for ( int optionId : options )
                 {
-                    if ( option_id != correct_option )
+                    if ( optionId != correctOption )
                     {
-                        RadioButton current_option = findViewById( option_id );
-                        String      population     = formatNumberWithSpaces( random.nextInt( 1255283 ) + 50610 );
-                        current_option.setText( population );
+                        RadioButton currentOption = findViewById( optionId );
+                        String      population    = formatNumberWithSpaces( random.nextInt( 1255283 ) + 50610 );
+                        currentOption.setText( population );
                     }
                 }
             }
@@ -150,6 +142,7 @@ public class QuizActivity extends AppCompatActivity
                     }
                     generateQuestion();
                 }
+
                 if ( radioGroup.getCheckedRadioButtonId() == secondOption.getId() )
                 {
                     current++;
@@ -164,6 +157,7 @@ public class QuizActivity extends AppCompatActivity
                     }
                     generateQuestion();
                 }
+
                 if ( radioGroup.getCheckedRadioButtonId() == thirdOption.getId() )
                 {
                     current++;

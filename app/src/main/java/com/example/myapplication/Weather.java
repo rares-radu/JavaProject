@@ -4,8 +4,6 @@ public class Weather
 {
     private final String name;
     private final String weather;
-
-
     private final String weatherIcon;
     private final double temperature;
     private final double feelsLike;
@@ -16,7 +14,7 @@ public class Weather
     {
         this.name        = name;
         this.weather     = weather;
-        this.weatherIcon     = weatherIcon;
+        this.weatherIcon = weatherIcon;
         this.temperature = temperature;
         this.feelsLike   = feelsLike;
         this.humidity    = humidity;
@@ -33,7 +31,7 @@ public class Weather
         return name;
     }
 
-    public String getweather()
+    public String getWeather()
     {
         return weather;
     }

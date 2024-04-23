@@ -193,8 +193,7 @@ public class MunicipalityRetriever
                     return null;
                 }
 
-                String populationQuery  = POPULATION_QUERY.replaceFirst( "MUNICIPALITY_CODE", municipalityCode );
-
+                String     populationQuery    = POPULATION_QUERY.replaceFirst( "MUNICIPALITY_CODE", municipalityCode );
                 JSONObject populationResponse = makeApiRequest( populationApiUrl, populationQuery );
                 if ( populationResponse == null )
                 {
