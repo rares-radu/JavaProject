@@ -146,7 +146,38 @@ public class SearchActivity extends AppCompatActivity implements MunicipalityInf
                             .addToBackStack(null)
                             .commit();
                     switchCompat.setText("Brief");
+                    String prompt = searchEditText.getText().toString();
                     fragmentContainerView.setVisibility( View.INVISIBLE );
+                    MunicipalityRetriever.getMunicipality( prompt, new RetrieverListener< Municipality >()
+                    {
+                        @Override
+                        public void onSuccess( Municipality valueMunicipality )
+                        {
+                            WeatherRetriever.getWeather( prompt, new RetrieverListener< Weather >()
+                            {
+                                @Override
+                                public void onSuccess( Weather valueWeather )
+                                {
+                                    onButtonClickBrief( valueMunicipality, valueWeather );
+                                    fragmentContainerView.setVisibility( View.VISIBLE );
+                                }
+
+                                @Override
+                                public void onFailure( Exception e )
+                                {
+                                    fragmentContainerView.setVisibility( View.INVISIBLE );
+                                    Toast.makeText( SearchActivity.this, "Try another municipality name", Toast.LENGTH_SHORT ).show();
+                                }
+                            } );
+                        }
+
+                        @Override
+                        public void onFailure( Exception e )
+                        {
+                            fragmentContainerView.setVisibility( View.INVISIBLE );
+                            Toast.makeText( SearchActivity.this, "Try another municipality name", Toast.LENGTH_SHORT ).show();
+                        }
+                    } );
                 } else {
                     MunicipalityInfoFragment fragment = new MunicipalityInfoFragment();
                     getSupportFragmentManager().beginTransaction()
@@ -154,8 +185,39 @@ public class SearchActivity extends AppCompatActivity implements MunicipalityInf
                             .setReorderingAllowed(true)
                             .addToBackStack(null)
                             .commit();
-                    switchCompat.setText("Detailed");
                     fragmentContainerView.setVisibility( View.INVISIBLE );
+                    switchCompat.setText("Detailed");
+                    String prompt = searchEditText.getText().toString();
+                    MunicipalityRetriever.getMunicipality( prompt, new RetrieverListener< Municipality >()
+                    {
+                        @Override
+                        public void onSuccess( Municipality valueMunicipality )
+                        {
+                            WeatherRetriever.getWeather( prompt, new RetrieverListener< Weather >()
+                            {
+                                @Override
+                                public void onSuccess( Weather valueWeather )
+                                {
+                                    onButtonClick( valueMunicipality, valueWeather );
+                                    fragmentContainerView.setVisibility( View.VISIBLE );
+                                }
+
+                                @Override
+                                public void onFailure( Exception e )
+                                {
+                                    fragmentContainerView.setVisibility( View.INVISIBLE );
+                                    Toast.makeText( SearchActivity.this, "Try another municipality name", Toast.LENGTH_SHORT ).show();
+                                }
+                            } );
+                        }
+
+                        @Override
+                        public void onFailure( Exception e )
+                        {
+                            fragmentContainerView.setVisibility( View.INVISIBLE );
+                            Toast.makeText( SearchActivity.this, "Try another municipality name", Toast.LENGTH_SHORT ).show();
+                        }
+                    } );
                 }
             }
         } );
